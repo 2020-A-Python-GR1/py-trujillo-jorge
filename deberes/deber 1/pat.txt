@@ -1,0 +1,24 @@
+{
+"Immortal Hulk":{ "serie_name":"Immortal Hulk", 
+"publish_year": 2018,
+"volumes":35,
+"canceled":0,
+"writer":"Al Ewing"
+}
+}
+
+Superheroes
+Comic volumes
+
+Superheroes:
+    Anadir Superheroes:
+
+    Ver datos de un Superheroes:
+
+    Modificar Superheroes:
+        Modificar datos:
+        Anadir/Quitar Serie:
+        
+    Eliminar Superheroes:
+
+
