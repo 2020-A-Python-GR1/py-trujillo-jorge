@@ -8,9 +8,23 @@
     },
     "The Incredible Hulk": {
         "serie_name": "The Incredible Hulk",
-        "publish_year": 1962,
-        "volumes": 467,
+        "publish_year": 1990,
+        "volumes": 233,
         "finalized": true,
         "writer": "Stan Lee"
+    },
+    "Wolverine: Origins": {
+        "serie_name": "Wolverine: Origins",
+        "publish_year": 2006,
+        "volumes": 31,
+        "finalized": true,
+        "writer": "Daniel Way"
+    },
+    "Poo": {
+        "serie_name": "Poo",
+        "publish_year": 2004,
+        "volumes": 6,
+        "finalized": true,
+        "writer": "Alan Moore"
     }
 }

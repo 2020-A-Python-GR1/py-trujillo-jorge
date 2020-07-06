@@ -15,12 +15,15 @@ class Files:
     def get_values(self, dict):
         print(dict.keys())
 
-    def show_sup(self,sup_name, datos):
-        print(Superhero().from_dict_to_superhero(datos[sup_name]))
+    def show_sup(self,sup_name):
+        datos = self.to_json()
+        print(self.from_dict_to_superhero(datos[sup_name]))
+        self.datos_file.close()
 
-    def show_comic(self,serie_name, datos):
-        print(Comic_Serie().from_dict_to_comicv(datos[serie_name]))
-        pass
+    def show_comic(self,serie_name):
+        datos = self.to_json()
+        print(self.from_dict_to_comicv(datos[serie_name]))
+        self.datos_file.close()
 
     def write_to_file(self,datos):
         self.datos_file.seek(0)
@@ -45,13 +48,55 @@ class Files:
         self.write_to_file(datos)
 
     def update_sup(self, sup_name, new_datos_sups,datos):
+        if type(new_datos_sups.status)=='int':
+            new_datos_sups.status= self.from_int_to_bool(new_datos_sups.status)
         datos[sup_name]=new_datos_sups.from_sups_to_dict()[new_datos_sups.superhero_name]
         if new_datos_sups.superhero_name != sup_name:
             datos[new_datos_sups.superhero_name] = datos.pop(sup_name)
         self.write_to_file(datos)
 
     def update_vol(self, vol_name, new_datos_vol,datos):
-        datos[vol_name]=new_datos_vol.from_sups_to_dict()[new_datos_vol.superhero_name]
-        if new_datos_vol.superhero_name != vol_name:
-            datos[new_datos_vol.superhero_name] = datos.pop(vol_name)
+        new_datos_vol.finalized = self.from_int_to_bool(new_datos_vol.finalized)
+        datos[vol_name]=new_datos_vol.from_comicv_to_dict()[new_datos_vol.serie_name]
+        if new_datos_vol.serie_name != vol_name:
+            datos[new_datos_vol.serie_name] = datos.pop(vol_name)
         self.write_to_file(datos)
+
+    def from_dict_to_superhero(self, arr_de_datos):
+        return Superhero(arr_de_datos["real_name"],
+        arr_de_datos["superhero_name"],
+        arr_de_datos["height"],
+        arr_de_datos["apparence_year"],
+        arr_de_datos["status"],
+        arr_de_datos['comics'])
+
+    def from_int_to_bool(self, numero):
+        if numero == "1":
+            return True
+        if numero == '0':
+            return False
+
+    def from_bool_to_int(self, data):
+        if data == True:
+            return 1
+        else:
+            return 0
+
+    def from_dict_to_comicv(self, arr_de_datos):
+        return Comic_Serie(arr_de_datos["serie_name"],
+        arr_de_datos["publish_year"],
+        arr_de_datos["volumes"],
+        arr_de_datos["finalized"],
+        arr_de_datos["writer"])
+
+    def add_serie_to_superhero(self, nombre_sup,nombre_serie, data):
+        aux = data[nombre_sup]
+        sup = self.from_dict_to_superhero(aux)
+        if (sup.comics.__contains__(nombre_serie)):
+            sup.delete_comic_serie(nombre_serie)
+            self.update_sup(nombre_sup,sup,data)
+            print('Se ha eliminado un a serie')
+        else:
+            sup.add_comic_serie(nombre_serie)
+            self.update_sup(nombre_sup,sup,data) 
+            print("Se ha añadido una serie")       

@@ -5,15 +5,7 @@
         "height": 2.0,
         "apparence_year": 1945,
         "status": false,
-        "comics":[]
-    },
-    "Lolo": {
-        "real_name": "John",
-        "superhero_name": "Lolo",
-        "height": "1.56",
-        "apparence_year": "1988",
-        "status": true,
-        "comics":[]
+        "comics": []
     },
     "Wolverine": {
         "real_name": "Logan",
@@ -21,14 +13,41 @@
         "height": 1.56,
         "apparence_year": 1989,
         "status": true,
-        "comics":[]
+        "comics": []
     },
-    "Dogpool": {
-        "real_name": "El bocazas",
-        "superhero_name": "Dogpool",
-        "height": 0.7,
-        "apparence_year": 2015,
+    "Flash": {
+        "real_name": "Wally West",
+        "superhero_name": "Flash",
+        "height": 1.45,
+        "apparence_year": 1993,
+        "status": true,
+        "comics": []
+    },
+    "Spider Man": {
+        "real_name": "Aaron Aikman",
+        "superhero_name": "Spider Man",
+        "height": 1.56,
+        "apparence_year": 2013,
         "status": false,
-        "comics":[]
+        "comics": []
+    },
+    "Deadpool": {
+        "real_name": "Wade Wilson",
+        "superhero_name": "Deadpool",
+        "height": 1.76,
+        "apparence_year": 1995,
+        "status": "1",
+        "comics": [
+            "Immortal Hulk",
+            "Wolverine: Origins"
+        ]
+    },
+    "Batman": {
+        "real_name": "asd",
+        "superhero_name": "Batman",
+        "height": 1.22,
+        "apparence_year": 1995,
+        "status": true,
+        "comics": []
     }
 }

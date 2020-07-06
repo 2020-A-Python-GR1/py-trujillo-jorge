@@ -6,4 +6,6 @@
 from classes import *
 import files
 
-
+arreglo = ["asd","def"]
+arreglo.remove("asd")
+print(arreglo.__contains__('def'))

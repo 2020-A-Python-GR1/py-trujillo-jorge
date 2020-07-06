@@ -23,14 +23,6 @@ class Superhero:
         Comics: {self.comics}
         """
 
-    def from_dict_to_superhero(self, arr_de_datos):
-        return Superhero(arr_de_datos["real_name"],
-        arr_de_datos["superhero_name"],
-        arr_de_datos["height"],
-        arr_de_datos["apparence_year"],
-        arr_de_datos["status"],
-        arr_de_datos["comics"])
-
     def from_sups_to_dict(self):
         return {self.superhero_name:{
             "real_name": self.real_name,
@@ -43,6 +35,9 @@ class Superhero:
 
     def add_comic_serie(self, serie_name):
         self.comics.append(serie_name)
+
+    def delete_comic_serie(self, serie_name):
+        self.comics.remove(serie_name)
 
 
 class Comic_Serie:
@@ -67,13 +62,6 @@ class Comic_Serie:
         Finalizado:{self.finalized}
         Escritor: {self.writer}
         """
-
-    def from_dict_to_comicv(self, arr_de_datos):
-        return Comic_Serie(arr_de_datos["serie_name"],
-        arr_de_datos["publish_year"],
-        arr_de_datos["volumes"],
-        arr_de_datos["finalized"],
-        arr_de_datos["writer"])
 
     def from_comicv_to_dict(self):
         return {self.serie_name:{
