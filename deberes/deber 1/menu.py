@@ -88,36 +88,46 @@ def update_superhero_menu():
     return func()
 
 def watch_superhero():
+    file = files.Files("./superheroes.json")
+    data = file.to_json()
+    print(f"Los superheroes registrados son: {data.keys()}")
     nombre_sup = str(input("Nombre del superheroe: \n"))
-    files.Files("./superheroes.json").show_sup(nombre_sup)
+    if data.keys().__contains__(nombre_sup):
+        file.show_sup(nombre_sup, data)
+    else:
+        print("El superheroe ingresado no esta registrado")
     input("Presione enter para continuar")
     superhero_menu()
 
 def create_superhero():
-    data = files.Files("./superheroes.json")
+    file = files.Files("./superheroes.json")
+    data = file.to_json()
+    print(f"Los superheroes registrados son: {data.keys()}")
+    print("CREACION NUEVO SUPERHEROE")
     new_sup={
     "real_name": input(f"Nombre real :\n"),
     "superhero_name" : input(f"Nombre de superheroe: \n"),
     'height': float(input(f"Altura:\n")),
     'apparence_year': int(input(f"Año de aparición:\n")),
-    'status':data.from_int_to_bool(input(f"Estatus (1 activo 0 inactivo):\n")),
+    'status':file.from_int_to_bool(int(input(f"Estatus (1 activo 0 inactivo):\n"))),
     'comics':[]
     }
-    data.add_sup(data.from_dict_to_superhero(new_sup),data.to_json())
+    file.add_sup(file.from_dict_to_superhero(new_sup),data)
     input("Presione enter para continuar")
     superhero_menu()
 
 def update_superhero():
-    serie_name = str(input("Ingrese el nombre del superheroe a modificar:\n"))
     file = files.Files("./superheroes.json")
     data = file.to_json()
+    print(f"Los superheroes registrados son: {data.keys()}\n")
+    serie_name = str(input("Ingrese el nombre del superheroe a modificar:\n"))
     old_serie = data[serie_name]
     new_sup={
     "real_name": input(f"Nombre real [default:{old_serie['real_name']}]:\n") or old_serie['real_name'],
     "superhero_name" : input(f"Nombre de superheroe [default:{old_serie['superhero_name']}]:\n") or old_serie['superhero_name'],
     'height': float(input(f"Altura [default:{old_serie['height']}]:\n") or old_serie['height']),
     'apparence_year': int(input(f"Año de aparición [default:{old_serie['apparence_year']}]:\n") or old_serie['apparence_year']),
-    'status':input(f"Estatus (1 activo 0 inactivo) [default:{old_serie['status']}]:\n") or str(file.from_bool_to_int(old_serie['status'])),
+    'status':int(input(f"Estatus (1 activo 0 inactivo) [default:{old_serie['status']}]:\n") or file.from_bool_to_int(old_serie['status'])),
     'comics':old_serie['comics']
     }
     file.update_sup(serie_name,file.from_dict_to_superhero(new_sup),data)
@@ -126,10 +136,11 @@ def update_superhero():
     superhero_menu()
 
 def delete_superhero():
+    file = files.Files("./superheroes.json")
+    data = file.to_json()
+    print(f"Los superheroes registrados son: {data.keys()}\n")
     serie_name = str(input("Ingrese el nombre del superheroe a Eliminar:\n"))
     try:
-        file = files.Files("./superheroes.json")
-        data = file.to_json()
         file.delete_sup(serie_name,data)
         print('Eliminado correctamente')
         input('Presione enter para continuar')
@@ -140,24 +151,25 @@ def delete_superhero():
         superhero_menu()
 
 def delete_serie():
+    file = files.Files("./series.json")
+    data = file.to_json()
+    print(f"Las series registradas son: {data.keys()}")
     serie_name = str(input("Ingrese el nombre de la serie a Eliminar:\n"))
-    try:
-        file = files.Files("./series.json")
-        data = file.to_json()
+    if data.keys().__contains__(serie_name):
         file.delete_vol(serie_name,data)
         print('Eliminado correctamente')
         input('Presione enter para continuar')
-        superhero_menu()
-    except Exception as id:
+    else:
         print("No se pudo eliminar, asegurese de escribir bien el nombre")
         input("Enter para continuar")
-        superhero_menu()
+    serie_menu()
 
 def add_remove_serie():
-    print("AÑADIR/QUITAR SERIE")
     sup_name=input("Ingrese el superheroe a editar\n")
     file_sup = files.Files("./superheroes.json")
     data = file_sup.to_json()
+    print("AÑADIR/QUITAR SERIE\n")
+    print(f"Las series registradas son: {data.keys()}\n")
     if data.keys().__contains__(sup_name):
         file_serie= files.Files("./series.json")
         data_series = file_serie.to_json()
@@ -167,6 +179,8 @@ def add_remove_serie():
         serie_name = input('Ingrese la serie a añadir o quitar\n')
         if data_series.keys().__contains__(serie_name):
             file_sup.add_serie_to_superhero(sup_name,serie_name,data)
+            input('Presione enter para continuar')
+            update_superhero_menu()
         else:
             print("La serie no se encuentra registrada")
             input('Presione enter para continuar')
@@ -178,11 +192,12 @@ def add_remove_serie():
     
 def create_serie():
     data = files.Files("./series.json")
+    print(f"Las series registradas son: {data.to_json().keys()}\n")
     new_serie={
     "serie_name": input(f"Nombre de la serie de comic:\n"),
     "publish_year" : int(input(f"Año de publicación: \n")),
     'volumes': int(input(f"Número de volumenes:\n")),
-    'finalized': data.from_int_to_bool(input(f"1 Finalizada. 0 no finalizada):\n")),
+    'finalized': data.from_int_to_bool(int(input(f"1 Finalizada. 0 no finalizada):\n"))),
     'writer': input(f"Escritor:\n")
     }
     data.add_volume(data.from_dict_to_comicv(new_serie),data.to_json())
@@ -190,21 +205,28 @@ def create_serie():
     serie_menu()
 
 def watch_serie():
-    nombre_sup = str(input("Nombre de la serie de comics: \n"))
-    files.Files("./series.json").show_comic(nombre_sup)
+    file = files.Files("./series.json")
+    data = file.to_json()
+    print(f"Las series registradas son: {data.keys()}")
+    nombre_sup = str(input("Nombre de la serie: \n"))
+    if data.keys().__contains__(nombre_sup):
+        file.show_comic(nombre_sup, data)
+    else:
+        print("La serie ingresada no esta registrada")
     input("Presione enter para continuar")
     serie_menu()
 
 def update_serie():
-    serie_name = str(input("Ingrese el nombre de la serie a modificar:\n"))
     file = files.Files("./series.json")
     data = file.to_json()
+    print(f"Las series registradas son: {data.keys()}\n")
+    serie_name = str(input("Ingrese el nombre de la serie a modificar:\n"))
     old_serie = data[serie_name]
     new_serie={
     "serie_name": input(f"Nombre [default:{old_serie['serie_name']}]:\n")or old_serie['serie_name'] ,
     "publish_year" : int(input(f"Año de publicación [default:{old_serie['publish_year']}]:\n") or old_serie['publish_year']),
     'volumes': int(input(f"Número de issues [default:{old_serie['volumes']}]:\n") or old_serie['volumes']),
-    'finalized': input(f"1 Finalizado 0 No finalizado [default:{old_serie['finalized']}]:\n") or str(file.from_bool_to_int(old_serie['finalized'])),
+    'finalized': int(input(f"1 Finalizado 0 No finalizado [default:{old_serie['finalized']}]:\n") or file.from_bool_to_int(old_serie['finalized'])),
     'writer':input(f"Escritor [default:{old_serie['writer']}]:\n") or old_serie['writer']
     }
     file.update_vol(serie_name,file.from_dict_to_comicv(new_serie),data)

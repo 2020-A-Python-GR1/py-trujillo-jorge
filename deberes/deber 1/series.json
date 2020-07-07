@@ -13,11 +13,18 @@
         "finalized": true,
         "writer": "Daniel Way"
     },
-    "Poo": {
-        "serie_name": "Poo",
-        "publish_year": 2004,
+    "Spawn: La Caza": {
+        "serie_name": "Spawn: La Caza",
+        "publish_year": 1997,
         "volumes": 6,
         "finalized": true,
-        "writer": "Alan Moore"
+        "writer": "McFarlane"
+    },
+    "X-Force Vol 1": {
+        "serie_name": "X-Force Vol 1",
+        "publish_year": 1993,
+        "volumes": 137,
+        "finalized": true,
+        "writer": "Jhon Buscema"
     }
 }
