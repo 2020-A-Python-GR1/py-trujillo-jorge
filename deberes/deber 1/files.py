@@ -82,6 +82,10 @@ class Files:
         else:
             return 0
 
+    def verify_sups_comics(self,serie_name):
+        
+        pass
+
     def from_dict_to_comicv(self, arr_de_datos):
         return Comic_Serie(arr_de_datos["serie_name"],
         arr_de_datos["publish_year"],
@@ -100,3 +104,5 @@ class Files:
             sup.add_comic_serie(nombre_serie)
             self.update_sup(nombre_sup,sup,data) 
             print("Se ha añadido una serie")       
+
+

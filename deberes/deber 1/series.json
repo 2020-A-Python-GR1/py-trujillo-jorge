@@ -1,11 +1,4 @@
 {
-    "Immortal Hulk": {
-        "serie_name": "Immortal Hulk",
-        "publish_year": 2018,
-        "volumes": 35,
-        "finalized": false,
-        "writer": "Al Ewing"
-    },
     "The Incredible Hulk": {
         "serie_name": "The Incredible Hulk",
         "publish_year": 1990,

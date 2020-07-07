@@ -5,34 +5,44 @@ from classes import *
 
 def main_menu():
     os.system('cls' if os.name == 'nt' else 'clear')
-    option = int(input("""BIENVENIDO
+    try:
+        option = int(input("""BIENVENIDO
     1. Superheroes
     2. Serie de Comics
     3. Salir
     Ingrese la opción:\n"""))
+    except ValueError as identifier:
+        option = -1
+   
     switcher = {
         1:superhero_menu,
         2:serie_menu,
         3: exit
     }
-    func = switcher.get(option, lambda:'Opcion no válida')
+    func = switcher.get(option, lambda:main_menu())
     return func()
 
 def serie_menu():
     os.system('cls' if os.name == 'nt' else 'clear')
-    option = int(input("""Menú de serie de comics
+    try:
+        option = int(input("""Menú de serie de comics
     1. Añadir serie
     2. Ver informacion de serie
     3. Modificar informacion de serie
     4. Eliminar serie de comics
     5. Atrás
     Ingrese la opción:\n"""))
+    except ValueError as identifier:
+        option = -1
+    
     switcher={
         1:create_serie,
         2:watch_serie,
-        3:update_serie
+        3:update_serie,
+        4:delete_serie,
+        5:main_menu
         }
-    func=switcher.get(option,lambda :'Invalid')
+    func=switcher.get(option,lambda :serie_menu())
     return func()
 
 def superhero_menu():
@@ -74,7 +84,7 @@ def update_superhero_menu():
         2:add_remove_serie,
         3:superhero_menu
         }
-    func=switcher.get(option,lambda: superhero_menu())
+    func=switcher.get(option,lambda: update_superhero_menu())
     return func()
 
 def watch_superhero():
@@ -121,6 +131,20 @@ def delete_superhero():
         file = files.Files("./superheroes.json")
         data = file.to_json()
         file.delete_sup(serie_name,data)
+        print('Eliminado correctamente')
+        input('Presione enter para continuar')
+        superhero_menu()
+    except Exception as id:
+        print("No se pudo eliminar, asegurese de escribir bien el nombre")
+        input("Enter para continuar")
+        superhero_menu()
+
+def delete_serie():
+    serie_name = str(input("Ingrese el nombre de la serie a Eliminar:\n"))
+    try:
+        file = files.Files("./series.json")
+        data = file.to_json()
+        file.delete_vol(serie_name,data)
         print('Eliminado correctamente')
         input('Presione enter para continuar')
         superhero_menu()
