@@ -192,7 +192,8 @@ def add_remove_serie():
     
 def create_serie():
     data = files.Files("./series.json")
-    print(f"Las series registradas son: {data.to_json().keys()}\n")
+    fi = data.to_json()
+    print(f"Las series registradas son: {fi.keys()}\n")
     new_serie={
     "serie_name": input(f"Nombre de la serie de comic:\n"),
     "publish_year" : int(input(f"Año de publicación: \n")),
@@ -200,7 +201,7 @@ def create_serie():
     'finalized': data.from_int_to_bool(int(input(f"1 Finalizada. 0 no finalizada):\n"))),
     'writer': input(f"Escritor:\n")
     }
-    data.add_volume(data.from_dict_to_comicv(new_serie),data.to_json())
+    data.add_volume(data.from_dict_to_comicv(new_serie),fi)
     input("Presione enter para continuar")
     serie_menu()
 
