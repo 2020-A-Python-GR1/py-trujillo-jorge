@@ -39,9 +39,7 @@
         "height": 1.76,
         "apparence_year": 1995,
         "status": true,
-        "comics": [
-            "Immortal Hulk"
-        ]
+        "comics": []
     },
     "Batman": {
         "real_name": "Bruno",
@@ -66,6 +64,14 @@
         "superhero_name": "Lolo",
         "height": 1.45,
         "apparence_year": 1994,
+        "status": true,
+        "comics": []
+    },
+    "Hulk": {
+        "real_name": "Bruce Banner",
+        "superhero_name": "Hulk",
+        "height": 2.45,
+        "apparence_year": 1956,
         "status": true,
         "comics": []
     }
