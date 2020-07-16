@@ -12,11 +12,8 @@ def get_random_meme():
     with open("meme.jpg", 'wb') as f:
         f.write(r.content) 
     
-original = np.empty(1)
-to_hide = 0
 matriz = []
 nums_only = np.empty(1)
-
 
 def get_nums():
     global nums_only
@@ -35,7 +32,7 @@ def can_move_to_empty(num,n):
     else:
         return False
 
-def move_matriz(num,n):
+def move(num,n):
     if can_move_to_empty(num,n):
         empty_pos = np.where(nums_only == -1)
         selected_pos = np.where(nums_only == num)
@@ -66,19 +63,17 @@ def dividir_imagen(imagen, n):
     global matriz
     altura = int(imagen.shape[0]/n)
     ancho = int(imagen.shape[1]/n)
-    bander = 0
+    posicion = 0
     for i in range(n):
         for j in range(n):
-            matriz.append([bander,np.array((imagen[altura*i:altura*(i+1),ancho*j:ancho*(j+1)]))])    
-            bander = bander +1  
+            matriz.append([posicion,np.array((imagen[altura*i:altura*(i+1),ancho*j:ancho*(j+1)]))])    
+            posicion = posicion +1  
     
 def hide_one(numero):
     global nums_only
-    to_hide_o = random.randint(0,numero*numero-1)
-    nums_only[to_hide_o]=-1
-    matriz[to_hide_o][0]=-1
-    pass
-
+    to_hide = random.randint(0,numero*numero-1)
+    nums_only[to_hide]=-1
+    matriz[to_hide][0]=-1
 
 def graficar(n):
     fig=plt.figure(figsize=(8, 8))
@@ -95,7 +90,6 @@ def graficar(n):
         plt.axis('off')
         plt.title(f"{matriz[i-1][0]}")
     plt.show()
-    pass
 
 def  finish(n):
     fig=plt.figure(figsize=(8, 8))
@@ -109,7 +103,6 @@ def  finish(n):
         plt.title(f"{matriz[i-1][0]}")
     plt.show()
 
-
 get_random_meme()
 n= int(input('Numero: ')) 
 dividir_imagen(read_image(),n)
@@ -122,5 +115,5 @@ while not verificar(n):
     get_nums()
     print(nums_only.reshape(n,n))
     num_selected = int(input('Numero sel: ')) 
-    move_matriz(num_selected,n)
+    move(num_selected,n)
 finish(n)
