@@ -6,11 +6,10 @@ import matplotlib.pyplot as plt
 
 def get_random_meme():
     response = requests.get("https://api.imgflip.com/get_memes")
-    # Print the status code of the response.
     lista = response.json()['data']['memes']
     a = random.randint(1,len(lista))
     r = requests.get(lista[a]['url'])
-    with open("meme2.jpg", 'wb') as f:
+    with open("meme.jpg", 'wb') as f:
         f.write(r.content) 
     
 original = np.empty(1)
@@ -42,7 +41,6 @@ def move_matriz(num,n):
         selected_pos = np.where(nums_only == num)
         nums_only[empty_pos], nums_only[selected_pos] = nums_only[selected_pos], nums_only[empty_pos]
         matriz[empty_pos[0][0]], matriz[selected_pos[0][0]] = matriz[selected_pos[0][0]], matriz[empty_pos[0][0]]
-        print(nums_only)
     else:
         print("No se puede mover")
     pass
@@ -59,10 +57,10 @@ def verificar(num):
         return False
 
 def read_image():
-    rana_pepe = mpimg.imread('meme2.jpg',format='jpg')
-    plt.imshow(rana_pepe)
+    img = mpimg.imread('meme.jpg',format='jpg')
+    plt.imshow(img)
     plt.show()
-    return rana_pepe
+    return img
 
 def dividir_imagen(imagen, n):
     global matriz
@@ -79,7 +77,6 @@ def hide_one(numero):
     to_hide_o = random.randint(0,numero*numero-1)
     nums_only[to_hide_o]=-1
     matriz[to_hide_o][0]=-1
-
     pass
 
 
@@ -100,11 +97,23 @@ def graficar(n):
     plt.show()
     pass
 
+def  finish(n):
+    fig=plt.figure(figsize=(8, 8))
+    columns = n
+    rows = n
+    img = mpimg.imread('finish.jpg',format='jpg')
+    for i in range(1, columns*rows +1):
+        fig.add_subplot(rows, columns, i)
+        plt.imshow(img)
+        plt.axis('off')
+        plt.title(f"{matriz[i-1][0]}")
+    plt.show()
+
+
 get_random_meme()
 n= int(input('Numero: ')) 
 dividir_imagen(read_image(),n)
 get_nums()
-print(nums_only)
 hide_one(n)
 np.random.shuffle(matriz)
 get_nums()
@@ -114,3 +123,4 @@ while not verificar(n):
     print(nums_only.reshape(n,n))
     num_selected = int(input('Numero sel: ')) 
     move_matriz(num_selected,n)
+finish(n)
