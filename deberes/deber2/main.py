@@ -10,7 +10,7 @@ def get_random_meme():
     lista = response.json()['data']['memes']
     a = random.randint(1,len(lista))
     r = requests.get(lista[a]['url'])
-    with open("meme.jpg", 'wb') as f:
+    with open("meme2.jpg", 'wb') as f:
         f.write(r.content) 
     
 original = np.empty(1)
@@ -59,15 +59,15 @@ def verificar(num):
         return False
 
 def read_image():
-    rana_pepe = mpimg.imread('meme.jpg',format='jpg')
+    rana_pepe = mpimg.imread('meme2.jpg',format='jpg')
     plt.imshow(rana_pepe)
     plt.show()
     return rana_pepe
 
 def dividir_imagen(imagen, n):
     global matriz
-    altura = int(imagen.shape[0]/4)
-    ancho = int(imagen.shape[1]/4)
+    altura = int(imagen.shape[0]/n)
+    ancho = int(imagen.shape[1]/n)
     bander = 0
     for i in range(n):
         for j in range(n):
@@ -82,13 +82,11 @@ def hide_one(numero):
 
     pass
 
-def get_min_aprox(numero,n):
-    pass
 
-def graficar():
+def graficar(n):
     fig=plt.figure(figsize=(8, 8))
-    columns = 4
-    rows = 4
+    columns = n
+    rows = n
     img = np.empty(1)
     for i in range(1, columns*rows +1):
         if matriz[i-1][0]==-1:
@@ -102,16 +100,17 @@ def graficar():
     plt.show()
     pass
 
-
-dividir_imagen(read_image(),4)
+get_random_meme()
+n= int(input('Numero: ')) 
+dividir_imagen(read_image(),n)
 get_nums()
 print(nums_only)
-hide_one(4)
+hide_one(n)
 np.random.shuffle(matriz)
 get_nums()
-while not verificar(4):
-    graficar()
+while not verificar(n):
+    graficar(n)
     get_nums()
-    print(nums_only.reshape(4,4))
-    num_selected = int(input('Numero sel')) 
-    move_matriz(num_selected,4)
+    print(nums_only.reshape(n,n))
+    num_selected = int(input('Numero sel: ')) 
+    move_matriz(num_selected,n)
