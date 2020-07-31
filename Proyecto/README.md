@@ -16,10 +16,10 @@ El chat es una aplicación Web que funciona con `flask` y `sockets`.
 ## Prototipo de interfaz
 
 **Interfaz de ingreso al chat**
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Interfaz de ingreso")
+![alt text](https://github.com/2020-A-Python-GR1/py-trujillo-jorge/blob/desarrollo/Proyecto/img/screen1.png "Interfaz de ingreso")
 
 **Interfaz del chat**
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Interfaz chat")
+![alt text](https://github.com/2020-A-Python-GR1/py-trujillo-jorge/blob/desarrollo/Proyecto/img/screen2.png "Interfaz chat")
  
  La interfaz navegable la puede ver [aqui](https://www.figma.com/file/BbMRVUfo9tPf5jyh7pENOA/Proyecto-Python?node-id=0%3A1) en Figma.
  
