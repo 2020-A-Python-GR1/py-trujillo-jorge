@@ -1,0 +1,78 @@
+{
+    "Superman": {
+        "real_name": "Klarko",
+        "superhero_name": "Superman",
+        "height": 2.0,
+        "apparence_year": 1945,
+        "status": false,
+        "comics": []
+    },
+    "Wolverine": {
+        "real_name": "Logan",
+        "superhero_name": "Wolverine",
+        "height": 1.56,
+        "apparence_year": 1989,
+        "status": false,
+        "comics": [
+            "Wolverine: Origins"
+        ]
+    },
+    "Flash": {
+        "real_name": "Wally West",
+        "superhero_name": "Flash",
+        "height": 1.45,
+        "apparence_year": 1993,
+        "status": true,
+        "comics": []
+    },
+    "Spider Man": {
+        "real_name": "Aaron Aikman",
+        "superhero_name": "Spider Man",
+        "height": 1.56,
+        "apparence_year": 2013,
+        "status": false,
+        "comics": []
+    },
+    "Deadpool": {
+        "real_name": "Wade Wilson",
+        "superhero_name": "Deadpool",
+        "height": 1.76,
+        "apparence_year": 1995,
+        "status": true,
+        "comics": []
+    },
+    "Batman": {
+        "real_name": "Bruno",
+        "superhero_name": "Batman",
+        "height": 1.66,
+        "apparence_year": 1995,
+        "status": true,
+        "comics": []
+    },
+    "Spawn": {
+        "real_name": "Al Simons",
+        "superhero_name": "Spawn",
+        "height": 1.78,
+        "apparence_year": 1991,
+        "status": true,
+        "comics": [
+            "Spawn: La Caza"
+        ]
+    },
+    "Lolo": {
+        "real_name": "Mona",
+        "superhero_name": "Lolo",
+        "height": 1.45,
+        "apparence_year": 1994,
+        "status": true,
+        "comics": []
+    },
+    "Hulk": {
+        "real_name": "Bruce Banner",
+        "superhero_name": "Hulk",
+        "height": 2.45,
+        "apparence_year": 1956,
+        "status": true,
+        "comics": []
+    }
+}

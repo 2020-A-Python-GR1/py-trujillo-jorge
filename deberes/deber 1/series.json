@@ -1,0 +1,30 @@
+{
+    "The Incredible Hulk": {
+        "serie_name": "The Incredible Hulk",
+        "publish_year": 1990,
+        "volumes": 233,
+        "finalized": true,
+        "writer": "Stan Lee"
+    },
+    "Wolverine: Origins": {
+        "serie_name": "Wolverine: Origins",
+        "publish_year": 2006,
+        "volumes": 31,
+        "finalized": true,
+        "writer": "Daniel Way"
+    },
+    "Spawn: La Caza": {
+        "serie_name": "Spawn: La Caza",
+        "publish_year": 1997,
+        "volumes": 6,
+        "finalized": true,
+        "writer": "McFarlane"
+    },
+    "X-Force Vol 1": {
+        "serie_name": "X-Force Vol 1",
+        "publish_year": 1993,
+        "volumes": 137,
+        "finalized": true,
+        "writer": "Jhon Buscema"
+    }
+}
