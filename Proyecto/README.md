@@ -24,7 +24,7 @@ El chat es una aplicación Web que funciona con `flask` y `sockets`.
  La interfaz navegable la puede ver [aqui](https://www.figma.com/file/BbMRVUfo9tPf5jyh7pENOA/Proyecto-Python?node-id=0%3A1) en Figma.
  
 ## Historias de usuario:
- Las historias de usuario las puede revisar [aqui](www.google.com)
+ Las historias de usuario las puede revisar [aqui](https://epnecuador-my.sharepoint.com/:x:/g/personal/jorge_trujillo_epn_edu_ec/Ec9za2LOY3tGtEOUDG2EsyEBYsWMDtxMptfh6K-y1LxEWg?e=RT4tOm)
 
 ## Referencias:
 [1] 	P. Lamere, «Welcome to Spotipy!,» 2014. [En línea]. Available: https://spotipy.readthedocs.io/en/2.13.0/. [Último acceso: 31 julio 2020].
