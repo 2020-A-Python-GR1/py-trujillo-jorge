@@ -20,11 +20,11 @@ df_agrupar_artista = seccion_df.groupby('artist')
 
 print(type(df_agrupar_artista))
 
-for columna, df_agrupado in df_agrupar_artista:
-    print(type(columna))
-    print(columna)
-    print(type(df_agrupado))
-    print(df_agrupado)
+#for columna, df_agrupado in df_agrupar_artista:
+    #print(type(columna))
+    #print(columna)
+    #print(type(df_agrupado))
+    #print(df_agrupado)
 
 #hacer calculos en columnas del df
     
@@ -54,9 +54,10 @@ def llenar_valores_vacios(series, tipo):
             promedio = suma/numero_valores
             series_valores_llenos = series.fillna(promedio)
             return series_valores_llenos
-        if(tipo == "mas repetido"):
-            
-            pass
+        if(tipo == "mas_repetido"):
+            mas_repetido = series.value_counts().index[0]
+            series_valores_llenos = series.fillna(mas_repetido)
+            return series_valores_llenos
 
 def transformar_df(df):
     df_artist = df.groupby('artist')
