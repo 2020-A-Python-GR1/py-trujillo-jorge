@@ -12,4 +12,11 @@ class IntroSpider(scrapy.Spider):
     def parse(self, response):
         etiqueta_contenedora = response.css('article.product_pod')
         titulos = etiqueta_contenedora.css('h3 > a::text').extract()
-        print(titulos)
+        imagen = etiqueta_contenedora.css('div.image_container > a > img::attr(src) ').extract()
+        dinero = etiqueta_contenedora.css('div.product_price > p.price_color::text').extract()
+        stock = etiqueta_contenedora.css('div.product_price > p.instock::text').extract()
+        stars = etiqueta_contenedora.css('p.star-rating::attr(class)').extract()
+        print(imagen)
+        print(dinero)
+        print(stock)
+        print(stars)
